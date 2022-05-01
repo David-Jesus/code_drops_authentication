@@ -9,12 +9,12 @@ interface IUserRequest {
 }
 
 class CreateUserUseCase {
-    async execute({name, username, password} : IUserRequest) {
+    async execute({name, username, password}: IUserRequest) {
         // verificar se o usuario existe
         const userAlreadExists = await client.user.findFirst({
             where: {
-                username
-            }
+                username,
+            },
         });
 
         if(userAlreadExists) {
@@ -23,13 +23,14 @@ class CreateUserUseCase {
 
         // cadastra o usuario
         const passwordHash = await hash(password, 8)
-        const user =await client.user.create({
+        const user = await client.user.create({
             data: {
                 name,
                 username,
-                password: passwordHash
-            }
-        })
+                password: passwordHash,
+            },
+        });
+
         return user;
     }
 }

@@ -3,13 +3,13 @@ import { CreateUserUseCase } from "./CreateUserUseCase";
 
 class CreateUserController {
     async handle(request: Request, response: Response) {
-        const { username, name, password} = request.body;
-
+        const { name, username, password} = request.body;
+        console.log(request.body);
         const createUserUseCase = new CreateUserUseCase();
 
         const user = await createUserUseCase.execute({
-            username,
             name,
+            username,
             password
         });
 
