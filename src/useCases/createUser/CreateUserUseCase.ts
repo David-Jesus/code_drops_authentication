@@ -1,4 +1,4 @@
-import { hash} from "bcryptjs"
+import { hash} from "bcryptjs";
 
 import { client } from "../../prisma/client";
 
@@ -22,7 +22,7 @@ class CreateUserUseCase {
         }
 
         // cadastra o usuario
-        const passwordHash = await hash(password, 8)
+        const passwordHash = await hash(password, 8);
         const user = await client.user.create({
             data: {
                 name,
